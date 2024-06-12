@@ -40,7 +40,7 @@ module.exports = {
         const userId = req.user.id
 
         try {
-            const cart = await Cart.find({ userId })
+            const cart = await Cart.find({ userId }).populate('products.cartItem', "_id name imageUrl price category")
             res.status(200).json(cart)
             console.log(cart)
         } catch (err) {
